@@ -37,10 +37,11 @@ public class JobTest {
 
     @Test
     public void testToStringStartsAndEndsWithNewLine() {
-        Job job = new Job();
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String jobString = job.toString();
-        assertEquals(true, jobString.startsWith(System.lineSeparator()));
-        assertEquals(true, jobString.endsWith(System.lineSeparator()));
+        String newLine = System.lineSeparator();
+        assertEquals(newLine, jobString.substring(0, newLine.length()));
+        assertEquals(newLine, jobString.substring(jobString.length() - newLine.length()));
     }
 
     @Test
