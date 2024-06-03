@@ -97,6 +97,22 @@ public class Job {
 
     @Override
     public String toString() {
+        String dataError = "Data not available";
+        if(name == null || name == "") {
+            name = dataError;
+        }
+        if(employer == null || employer.getValue() == "") {
+            employer.setValue(dataError);
+        }
+        if(location == null || location.getValue() == "") {
+            location.setValue(dataError);
+        }
+        if(positionType == null || positionType.getValue() == "") {
+            positionType.setValue(dataError);
+        }
+        if(coreCompetency == null || coreCompetency.getValue() == "") {
+            coreCompetency.setValue(dataError);
+        }
         return System.lineSeparator() +
                 "ID: " + id + System.lineSeparator() +
                 "Name: " + (name != null && !name.isEmpty() ? name : "Data not available") + System.lineSeparator() +

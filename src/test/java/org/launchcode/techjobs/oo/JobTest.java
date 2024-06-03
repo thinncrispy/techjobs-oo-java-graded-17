@@ -42,4 +42,31 @@ public class JobTest {
         assertEquals(true, jobString.startsWith(System.lineSeparator()));
         assertEquals(true, jobString.endsWith(System.lineSeparator()));
     }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String jobString = System.lineSeparator() +
+                "ID: " + testJob.getId() + System.lineSeparator() +
+                "Name: " + testJob.getName() + System.lineSeparator() +
+                "Employer: " + testJob.getEmployer() + System.lineSeparator() +
+                "Location: " + testJob.getLocation() + System.lineSeparator() +
+                "Position Type: " + testJob.getPositionType() + System.lineSeparator() +
+                "Core Competency: " + testJob.getCoreCompetency() + System.lineSeparator();
+        assertEquals(jobString, testJob.toString());
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job testJob = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
+        String emptyJobValues = System.lineSeparator() +
+                "ID: " + testJob.getId() + System.lineSeparator() +
+                "Name: " + testJob.getName() + System.lineSeparator() +
+                "Employer: Data not available" + System.lineSeparator() +
+                "Location: " + testJob.getLocation() + System.lineSeparator() +
+                "Position Type: " + testJob.getPositionType() + System.lineSeparator() +
+                "Core Competency: " + testJob.getCoreCompetency() + System.lineSeparator();
+        assertEquals(emptyJobValues, testJob.toString());
+
+    }
 }
